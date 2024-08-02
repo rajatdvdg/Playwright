@@ -11,19 +11,20 @@ test.afterEach(async ({ page }) => {
   await deleteAll(page);
 });
 
-test('should create text bot successfully', async ({ page }) => {
+test('should create pdf bot successfully', async ({ page }) => {
 
-    const filePath = 'tests/utils/comprehension.txt';
-    const text = fs.readFileSync(filePath, 'utf-8');
+    const filePath = 'tests/utils/Einstein_Theory_of_Relativity_compressed.pdf';
     
     await page.getByRole('link', { name: 'Create new bot' }).click();
     await expect(page).toHaveURL('https://starfishaptly.eastus.cloudapp.azure.com/#/new');
 
-    await page.locator('[id="headlessui-radiogroup-option-\\:r6\\:"]').click();
+    await page.locator('[id="headlessui-radiogroup-option-\\:r8\\:"]').click();
 
-    await page.getByPlaceholder('Enter the text').fill(text);
+    const fileInput = await page.$('#file');
+    await fileInput.setInputFiles(filePath);
 
     await page.getByRole('button', { name: 'Create' }).click();
+
 
     await page.locator('a:nth-child(6)').click();
 
@@ -40,7 +41,9 @@ test('should create text bot successfully', async ({ page }) => {
   
     await page.getByRole('link', { name: projectName }).click();
   
-    await page.getByPlaceholder('Type a message...').fill('What role does the Whispering Woods play in the story, and why is it significant to the quest?');
+    await page.getByPlaceholder('Type a message...').fill('What is relativity?');
     
     await page.getByRole('button', { name: 'Send' }).click();
 })
+
+    
