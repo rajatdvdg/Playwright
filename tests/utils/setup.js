@@ -1,3 +1,4 @@
+const { expect } = require('@playwright/test');
 const { validUser } = require('./data');
 
 async function setupLogin(page) {
@@ -14,10 +15,15 @@ async function deleteAll(page) {
 
     await page.getByRole('button', { name: 'Delete bot' }).click();
 
-    page.once('dialog', dialog => {
+    page.once('dialog', async dialog => {
         console.log(`Dialog message: ${dialog.message()}`);
-        dialog.accept().catch(() => {});
+        expect(dialog.type()).toContain('confirm')
+        await dialog.accept();
     });
+
+    await page.getByRole('button', { name: 'Delete bot' }).click();
+    await page.waitForTimeout(5000);
+
 }
   
 module.exports = {
