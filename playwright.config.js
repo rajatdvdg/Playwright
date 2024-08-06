@@ -35,18 +35,31 @@ module.exports = defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'], 
+        screenshot: 'on' },
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { ...devices['Desktop Firefox'], 
+        screenshot: 'on' },
     },
 
-    {
+    /*{
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+      use: { ...devices['Desktop Safari'], 
+        screenshot: 'on'
+      },
+    },*/
+
+    {
+      name: 'edge',
+      use: { 
+        browserName: 'chromium',
+        channel: 'msedge',
+        screenshot: 'on'
+      },
+    }
 
     /* Test against mobile viewports. */
     // {
