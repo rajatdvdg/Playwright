@@ -69,5 +69,17 @@ This guide will help you set up your Playwright on your machine and cover the in
    ```sh
    npx playwright test
 
+2. To run a single Playwright test, use the following command in the terminal and replace example.spec.js with test case name
+   ```sh
+   npx playwright test example.spec.js
+
+3. To run the Playwright tests on a single browser, use the following command in the terminal and replace chromium with browser name such as chromium | edge | firefox | safari | webkit
+   ```sh
+   npx playwright test --project chromium
+
+4. To run the Playwright tests in headed view, use the following command in the terminal. You can watch the execution take place in the browser using this command.
+   ```sh
+   npx playwright test --headed
+
 ## Documentation
 For more detailed documentation on how to write tests, refer to the Documentation directory or visit the [Playwright official documentation](https://playwright.dev/docs/writing-tests).
